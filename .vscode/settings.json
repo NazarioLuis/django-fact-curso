@@ -1,0 +1,5 @@
+{
+    "python.pythonPath": "C:\\Miniconda3\\envs\\py3\\python.exe",
+    "python.jediEnabled": true,
+    "python.linting.pylintEnabled": true,
+}
