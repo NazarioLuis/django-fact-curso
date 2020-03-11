@@ -1,0 +1,9 @@
+{% if url_edit %}
+<a href="{% url url_edit record.id %}" class="btn btn-warning btn-circle" role="button"><i class="far fa-edit"></i></a>
+{% endif %}
+{% if url_delete %}
+<a href="{% url url_delete record.id %}" class="btn btn-danger btn-circle" role="button"><i class="far fa-trash-alt"></i></a>
+{% endif %}
+{% if url_view %}
+<a href="{% url url_view record.id %}" class="btn btn-info btn-circle" role="button"><i class="far fa-eye"></i></a>
+{% endif %}

@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load my_tags %}
+
+{% block page_content %}
+<div class="col-xl-6 col-md-12 mb-12">
+    <div class="card border-left-{% if obj %}warning{% else %}success{% endif %} shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                        {% if readonly %} Datos de {% else %}
+                            {% if obj %} Editar 
+                            {% else %} Registrar {% endif %}
+                        {% endif %}
+                        {{view.model|verbose_name}}                        
+                    </div>
+                    <div class="dropdown-divider"></div>
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        {{form|crispy}}
+                        {% if not readonly %}
+                        <button type="submit" class="btn btn-primary">
+                            <span class="fa fa-save"></span> {% if obj %}Actualizar{% else %}Guardar{% endif %}
+                        </button>
+                        {% endif %}
+                        <a href="{% url 'inv:'|add_module:view.model|add:'_list' %}" class="btn btn-dark">
+                            <span class="fa fa-undo"></span> Cancelar
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock page_content %}
+
+{% block js_page %}
+{% if readonly %}
+<script>
+    $("form *").attr("disabled", true);
+</script>
+{% endif %}
+{% endblock js_page %}

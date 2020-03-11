@@ -1,0 +1,30 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load my_tags %}
+
+{% block page_content %}
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2">
+                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">¿Eliminar {{view.model|verbose_name}}: {{obj}}?</div>
+                    <form method="POST" class="form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Si, eliminar</button>
+                        <a href="{% url 'inv:'|add_module:view.model|add:'_list' %}" class="btn btn-dark">
+                            <span class="fa fa-undo"></span> Cancelar
+                        </a>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <i class="fas fa-question-circle fa-2x text-gray-300"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
+
+{% block js_page %}
+{% endblock js_page %}
