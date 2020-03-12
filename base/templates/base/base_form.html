@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
-{% load crispy_forms_tags %}
 {% load my_tags %}
+{% load bootstrap4 %}
 
 {% block page_content %}
 <div class="col-xl-6 col-md-12 mb-12">
@@ -20,7 +20,8 @@
                     <form method="POST">
                         {% csrf_token %}
 
-                        {{form|crispy}}
+                        {% bootstrap_form form %}
+                        {% buttons %}
                         {% if not readonly %}
                         <button type="submit" class="btn btn-primary">
                             <span class="fa fa-save"></span> {% if obj %}Actualizar{% else %}Guardar{% endif %}
@@ -29,6 +30,7 @@
                         <a href="{% url 'inv:'|add_module:view.model|add:'_list' %}" class="btn btn-dark">
                             <span class="fa fa-undo"></span> Cancelar
                         </a>
+                        {% endbuttons %}
                     </form>
                 </div>
             </div>

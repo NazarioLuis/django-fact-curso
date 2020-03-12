@@ -2,7 +2,6 @@ import django_tables2 as tables
 
 
 class BaseTable(tables.Table):
-
     def get_options(links):
         return tables.TemplateColumn(
             template_name='base/list_options.html', verbose_name="Opciones",

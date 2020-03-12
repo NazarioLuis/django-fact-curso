@@ -1,6 +1,18 @@
 from base.tables import BaseTable,tables
-from .models import Categoria,SubCategoria
+from .models import Categoria,SubCategoria,Marca
 
+class MarcaTable(BaseTable):
+    options = BaseTable.get_options({
+        "url_edit": "inv:marca_edit",
+        "url_delete": "inv:marca_delete",
+        "url_view": "inv:marca_view",
+    })
+
+    class Meta(BaseTable.Meta):
+
+        model = Marca
+        fields = ("descripcion", "estado", "fecha_creacion",
+                  "fecha_modificacion", "options",)
 
 class CategoriaTable(BaseTable):
     options = BaseTable.get_options({

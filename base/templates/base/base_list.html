@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
 {% load render_table from django_tables2 %}
-{% load crispy_forms_tags %}
+{% load bootstrap4 %}
 {% load my_tags %}
 
 {% block page_content %}
@@ -24,8 +24,10 @@
     <!-- Card Body -->
     <div class="card-body">
         <form method="get" class="form-inline">
-            {{ filter.form|crispy }}
+            {% bootstrap_form filter.form form_group_class='form-group mr-2' %}
+            {% buttons %}
             <button type="submit" class="btn btn-primary">Buscar</button>
+            {% endbuttons %}
         </form>
         <br>
         {% if not table.rows %}
