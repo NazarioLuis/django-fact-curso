@@ -2,6 +2,11 @@
 {% load my_tags %}
 
 {% block page_content %}
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger col-xl-6 col-md-11 m-3" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
 <div class="col-xl-3 col-md-6 mb-4">
     <div class="card border-left-warning shadow h-100 py-2">
         <div class="card-body">
@@ -11,7 +16,7 @@
                     <form method="POST" class="form">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-danger">Si, eliminar</button>
-                        <a href="{% url 'inv:'|add_module:view.model|add:'_list' %}" class="btn btn-dark">
+                        <a href="{% url ''|add_module:view.model|add:'_list' %}" class="btn btn-dark">
                             <span class="fa fa-undo"></span> Cancelar
                         </a>
                     </form>

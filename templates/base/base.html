@@ -18,6 +18,7 @@
 
   <!-- Custom styles for this template-->
   <link href="{% static 'base/css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'base/css/jquery-confirm.min.css' %}" rel="stylesheet">
 
 </head>
 
@@ -68,9 +69,26 @@
             <a class="collapse-item" href="{% url 'inv:categoria_list' %}">Categorias</a>
             <a class="collapse-item" href="{% url 'inv:subcategoria_list' %}">Sub Categorias</a>
             <a class="collapse-item" href="{% url 'inv:marca_list' %}">Marcas</a>
+            <a class="collapse-item" href="{% url 'inv:unidadmedida_list' %}">Unidades de Medida</a>
+            <a class="collapse-item" href="{% url 'inv:producto_list' %}">Productos</a>
           </div>
         </div>
       </li>
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Compras</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Opciones de compras:</h6>
+            <a class="collapse-item" href="{% url 'cmp:proveedor_list' %}">Proveedores</a>
+          </div>
+        </div>
+      </li>
+
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
@@ -352,9 +370,21 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{% static 'base/js/sb-admin-2.min.js' %}"></script>
+  <script src="{% static 'base/js/jquery-confirm.min.js' %}"></script>
 
-  {% block js_page %}
-  {% endblock js_page %}
+  <script>
+    function mensaje(msg,color="green") {
+      $.alert({
+        title:"",
+        theme:"material",
+        type:color,
+        content:msg
+      })
+    }
+    {% block js_page %}
+    {% endblock js_page %}
+  </script>
+  
 
 </body>
 

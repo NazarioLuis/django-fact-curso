@@ -1,5 +1,9 @@
+from django.shortcuts import render
 from django.urls import reverse_lazy
+from django.http import HttpResponseRedirect
 from django.db.models import ProtectedError
+from django.db.utils import IntegrityError
+from django.contrib import messages
 from django.views.generic import TemplateView,CreateView,UpdateView,DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_tables2 import SingleTableMixin
@@ -47,5 +51,7 @@ class BaseDeleteView(LoginRequiredMixin,DeleteView):
     def post(self, request, *args, **kwargs):
         try:
             return self.delete(request, *args, **kwargs)
-        except ProtectedError:
-            return self;
+        except Exception as e:
+            if type(e) == ProtectedError: messages.error(request, 'No se puede eliminar, el registro se encuentra en uso!')
+            else: messages.error(request, 'Se produjo un error inesperado.')
+            return render(request, template_name=self.template_name, context=self.get_context_data())

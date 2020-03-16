@@ -1,5 +1,5 @@
 from base.tables import BaseTable,tables
-from .models import Categoria,SubCategoria,Marca
+from .models import Categoria,SubCategoria,Marca,UnidadMedida,Producto
 
 class MarcaTable(BaseTable):
     options = BaseTable.get_options({
@@ -9,10 +9,9 @@ class MarcaTable(BaseTable):
     })
 
     class Meta(BaseTable.Meta):
-
         model = Marca
-        fields = ("descripcion", "estado", "fecha_creacion",
-                  "fecha_modificacion", "options",)
+        fields = ("descripcion","contacto","telefono","email","estado",
+                "fecha_creacion","fecha_modificacion", "options",)
 
 class CategoriaTable(BaseTable):
     options = BaseTable.get_options({
@@ -22,7 +21,6 @@ class CategoriaTable(BaseTable):
     })
 
     class Meta(BaseTable.Meta):
-
         model = Categoria
         fields = ("descripcion", "estado", "fecha_creacion",
                   "fecha_modificacion", "options",)
@@ -38,3 +36,26 @@ class SubCategoriaTable(BaseTable):
     class Meta(BaseTable.Meta):
         model = SubCategoria
         fields = ("categoria","descripcion","estado", "fecha_creacion","fecha_modificacion", "options",)
+
+class UnidadMedidaTable(BaseTable):
+    options = BaseTable.get_options({
+        "url_edit": "inv:unidadmedida_edit",
+        "url_delete": "inv:unidadmedida_delete",
+        "url_view": "inv:unidadmedida_view",
+    })
+
+    class Meta(BaseTable.Meta):
+        model = UnidadMedida
+        fields = ("descripcion", "estado", "fecha_creacion",
+                  "fecha_modificacion", "options",)
+
+class ProductoTable(BaseTable):
+    options = BaseTable.get_options({
+        "url_edit": "inv:producto_edit",
+        "url_delete": "inv:producto_delete",
+        "url_view": "inv:producto_view",
+    })
+
+    class Meta(BaseTable.Meta):
+        model = Producto
+        fields = ("codigo", "descripcion", "precio", "ultima_compra", "existencia",  "estado", "options",)

@@ -1,7 +1,10 @@
 from django.urls import path
 from .views import CategoriaCreateView,CategoriaUpdateView,CategoriaListView,CategoriaDeleteView,\
     SubCategoriaListView,SubCategoriaCreateView,SubCategoriaUpdateView,SubCategoriaDeleteView,\
-    MarcaListView,MarcaCreateView,MarcaUpdateView,MarcaDeleteView
+    MarcaListView,MarcaCreateView,MarcaUpdateView,MarcaDeleteView,\
+    UnidadMedidaListView,UnidadMedidaCreateView,UnidadMedidaUpdateView,UnidadMedidaDeleteView,\
+    ProductoListView,ProductoCreateView,ProductoUpdateView,ProductoDeleteView
+    
 urlpatterns = [
     path('categorias/', CategoriaListView.as_view(),name='categoria_list'),
     path('categorias/new', CategoriaCreateView.as_view(),name='categoria_new'),
@@ -18,6 +21,16 @@ urlpatterns = [
     path('marcas/edit/<int:pk>', MarcaUpdateView.as_view(),name='marca_edit'),
     path('marcas/delete/<int:pk>', MarcaDeleteView.as_view(),name='marca_delete'),
     path('marcas/view/<int:pk>', MarcaUpdateView.as_view(readonly=True),name='marca_view'),
+    path('unidades_de_medida/', UnidadMedidaListView.as_view(),name='unidadmedida_list'),
+    path('unidades_de_medida/new', UnidadMedidaCreateView.as_view(),name='unidadmedida_new'),
+    path('unidades_de_medida/edit/<int:pk>', UnidadMedidaUpdateView.as_view(),name='unidadmedida_edit'),
+    path('unidades_de_medida/delete/<int:pk>', UnidadMedidaDeleteView.as_view(),name='unidadmedida_delete'),
+    path('unidades_de_medida/view/<int:pk>', UnidadMedidaUpdateView.as_view(readonly=True),name='unidadmedida_view'),
+    path('productos/', ProductoListView.as_view(),name='producto_list'),
+    path('productos/new', ProductoCreateView.as_view(),name='producto_new'),
+    path('productos/edit/<int:pk>', ProductoUpdateView.as_view(),name='producto_edit'),
+    path('productos/delete/<int:pk>', ProductoDeleteView.as_view(),name='producto_delete'),
+    path('productos/view/<int:pk>', ProductoUpdateView.as_view(readonly=True),name='producto_view'),
 ]
 
 app_name='inv'
